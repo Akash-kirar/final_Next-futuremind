@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --header-height: 3.75rem;
+  --bottom-nav-height: calc(4rem + env(safe-area-inset-bottom, 0px));
+  scroll-padding-top: calc(var(--header-height) + env(safe-area-inset-top, 0px) + 0.75rem);
+  scroll-padding-bottom: var(--bottom-nav-height);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --header-height: 4.25rem;
+    --bottom-nav-height: 0px;
+  }
+}
+
+.font-handwriting {
+  font-family: var(--font-caveat), 'Caveat', cursive;
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+html,
+body,
+header,
+aside,
+main,
+section,
+nav,
+footer,
+div,
+button,
+input,
+textarea,
+select {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 180ms;
+  transition-timing-function: ease;
+}
+
+html.dark,
+html.dark body {
+  background: #080d19;
+  color: #e5e7eb;
+}
+
+html.dark .bg-white,
+html.dark [class*="bg-white/"],
+html.dark [class~="bg-[#fcfdff]"],
+html.dark [class~="bg-[#fbfbfe]"],
+html.dark [class~="bg-[#f8f7ff]"] {
+  background-color: #111827 !important;
+}
+
+html.dark .bg-gray-50,
+html.dark [class~="bg-[#f9fafb]"] {
+  background-color: #0b1220 !important;
+}
+
+html.dark .bg-gray-100,
+html.dark [class~="bg-[#f0edff]"],
+html.dark [class~="bg-[#f4edff]"] {
+  background-color: #1c2638 !important;
+}
+
+html.dark .text-black,
+html.dark .text-gray-950,
+html.dark .text-gray-900,
+html.dark .text-gray-800 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-gray-700,
+html.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+html.dark .text-gray-500,
+html.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+html.dark .border-white,
+html.dark [class*="border-white/"],
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-gray-300 {
+  border-color: #293548 !important;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  color: #f8fafc;
+  caret-color: #a78bfa;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b;
+}
+
+html.dark img {
+  color-scheme: normal;
+}

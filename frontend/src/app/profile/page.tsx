@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
+import { useTheme, type ThemeMode } from "@/components/ThemeProvider";
 import {
   BookOpen,
   Bookmark,
@@ -53,6 +54,7 @@ const AVATAR_OPTIONS = [
 export default function ProfilePage() {
   const router = useRouter();
   const { user, signOut, updateProfile } = useAuth();
+  const { themeMode, setThemeMode } = useTheme();
   // User Profile State
   const [userName, setUserName] = useState("Akash Kumar");
   const [userEmail, setUserEmail] = useState("akash@example.com");
@@ -84,26 +86,7 @@ export default function ProfilePage() {
     "edit" | "savedCourses" | "prompts" | "downloads" | "certificates" | "changeMode" | "settings" | "support" | "logout" | null
   >(null);
 
-  // Theme Mode State
-  const [themeMode, setThemeMode] = useState<"light" | "dark" | "system">(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("nfm_theme_mode") as "light" | "dark" | "system" | null;
-      if (saved) return saved;
-    }
-    return "light";
-  });
-
-  useEffect(() => {
-    const isDark =
-      themeMode === "dark" ||
-      (themeMode === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    document.documentElement.classList.toggle("dark", isDark);
-  }, [themeMode]);
-
-  const applyTheme = (mode: "light" | "dark" | "system") => {
-    setThemeMode(mode);
-    localStorage.setItem("nfm_theme_mode", mode);
-  };
+  const applyTheme = (mode: ThemeMode) => setThemeMode(mode);
 
   // Saved Learning Courses Data
   const [savedCoursesList, setSavedCoursesList] = useState([
